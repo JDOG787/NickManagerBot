@@ -1,19 +1,17 @@
 // Discord
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const prefix = "%";
 
 
 // MongoDB
 const Request = require("./request");
 
 
-// Configuration
-const { token, prefix, replit } = require("./config");
-
 
 // Connections
 require("./database")();
-if (replit) require("./server");
+require("./server");
 
 
 // Commands
@@ -22,13 +20,13 @@ const fs = require("fs");
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
+  const command = require(`./commands/${file}`);
+  client.commands.set(command.name, command);
 }
 
 
 // Discord Client
-client.on('ready', () => {  
+client.on('ready', () => {
   console.log(`${client.user.username} Booting up...`);
 });
 
@@ -46,4 +44,4 @@ client.on('message', msg => {
   }
 });
 
-client.login(token);
+client.login(process.env.token);
