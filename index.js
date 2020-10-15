@@ -28,6 +28,7 @@ for (const file of commandFiles) {
 // Discord Client
 client.on('ready', () => {
   console.log(`${client.user.username} Booting up...`);
+  client.user.setActivity(`for nicks. ${prefix}help`, { type: 'LISTENING' });
 });
 
 client.on('message', msg => {
