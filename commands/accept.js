@@ -14,7 +14,6 @@ module.exports = {
           member.setNickname(request.nick);
 
           msg.channel.send(`Nick changed to \`${request.nick}\`!`);
-          member.send(`Nick changed to \`${request.nick}\`!`);
 
           Request.deleteOne(request).then(err => {
             if (err) {

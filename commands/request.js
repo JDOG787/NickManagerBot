@@ -13,14 +13,13 @@ module.exports = {
 
     Request.create(request, (err, request) => {
       if (!err) {
-        let newEmbed = embed("#0099ff", "Nick Requested!", `\`${msg.author.username}\` requested a nick.`, {name: "Nick:", value: `\`${nick}\``}, {name: "Id:", value: `\`${request._id}\``});
+        let newEmbed = embed("#0099ff", "Nick Requested!", `\`${msg.author.username}\` requested a nick.`, [{name: "Nick:", value: `\`${nick}\``}]);
 
-        client.channels.cache
-          .get('766030818300526603')
-          // .send( requested nick:  id: \`${request._id}\``);
-          .send(newEmbed);
+        const channel= client.channels.cache.get('766030818300526603');
+        channel.send(newEmbed)
+        channel.send(`\`${request._id}\``);
         
-        msg.author.send("Nick Requested!");
+        msg.channel.send("Nick Requested!");
       }
     });
 	}
