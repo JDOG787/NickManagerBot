@@ -1,12 +1,24 @@
+// Discord
 const Discord = require("discord.js");
-const fs = require('fs');
 const client = new Discord.Client();
+
+
+// MongoDB
 const Request = require("./request");
-const token = process.env.token;
-const prefix = "%";
+
+
+// Configuration
+const { token, prefix, replit } = require("./config");
+
+
+// Connections
 require("./database")();
-require("./server");
+if (replit) require("./server");
+
+
+// Commands
 client.commands = new Discord.Collection();
+const fs = require("fs");
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
@@ -15,6 +27,7 @@ for (const file of commandFiles) {
 }
 
 
+// Discord Client
 client.on('ready', () => {  
   console.log(`${client.user.username} Booting up...`);
 });
@@ -25,11 +38,10 @@ client.on('message', msg => {
   const args = msg.content.slice(prefix.length).trim().split(' ');
   const command = args.shift().toLowerCase();
 
-
   try {
     client.commands.get(command).execute(msg, args, client);
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    console.error(e);
     msg.reply('There was an error trying to execute that command!');
   }
 });

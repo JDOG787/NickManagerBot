@@ -2,10 +2,9 @@ const Request = require("../request");
 module.exports = {
 	name: 'decline',
 	execute(msg, args) {
-    let id = args[0]
+    let id = args[0];
 
-    if(msg.member.hasPermission('MANAGE_NICKNAMES')){
-
+    if (msg.member.hasPermission('MANAGE_NICKNAMES')) {
       msg.channel.send(`Nick declined!`);
 
       Request.deleteOne({_id: id}).then(err => {
@@ -14,5 +13,5 @@ module.exports = {
         }
       });
     }
-	},
+	}
 };
