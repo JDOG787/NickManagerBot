@@ -1,8 +1,8 @@
 module.exports = () => {
   const mongoose = require("mongoose");
-  const URI = require("./config").mongo;
+  const { uri } = process.env;
 
-  mongoose.connect(URI, {
+  mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
