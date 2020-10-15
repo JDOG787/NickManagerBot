@@ -4,12 +4,15 @@ module.exports = {
 	execute(msg, args) {
     let id = args[0]
 
-    msg.channel.send(`Nick declined!`);
+    if(msg.member.hasPermission('MANAGE_NICKNAMES')){
 
-    Request.deleteOne({_id: id}).then(err => {
-      if (err) {
-        console.log(err);
-      }
-    });
+      msg.channel.send(`Nick declined!`);
+
+      Request.deleteOne({_id: id}).then(err => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
 	},
 };
