@@ -19,6 +19,7 @@ module.exports = {
           .get('766030818300526603')
           // .send( requested nick:  id: \`${request._id}\``);
           .send(newEmbed);
+        
         msg.author.send("Nick Requested!");
       }
     });
