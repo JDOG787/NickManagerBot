@@ -5,7 +5,7 @@ module.exports = (color, title, desc, item1, item2) => {
     .setColor(color)
 	  .setTitle(title)
 	  .setDescription(desc)
-    .addFields(item1, item2)
+    .addFields(item1, item2);
 
   return embed;
-}
+};
