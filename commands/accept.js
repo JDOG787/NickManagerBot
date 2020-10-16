@@ -1,4 +1,4 @@
-const Request = require("../request");
+const Request = require("../models/request");
 module.exports = {
 	name: 'accept',
 	execute(msg, args, client) {

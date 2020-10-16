@@ -4,10 +4,6 @@ const client = new Discord.Client();
 const prefix = "%";
 
 
-// MongoDB
-const Request = require("./request");
-
-
 
 // Connections
 require("./database")();
